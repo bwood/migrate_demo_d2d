@@ -164,14 +164,14 @@ function migrate_demo_d2d_register_migrations() {
   $common_arguments['group_name'] = "Nodes";
   $node_arguments = array(
     array(
-      'class_name' => 'DrupalNode6Migration',
+      'class_name' => 'HrwebNodeMigration',
       'description' => t('Migration of Page nodes from Drupal 6'),
       'machine_name' => 'Page',
       'source_type' => 'page',
       'destination_type' => 'panopoly_page',
     ),
     array(
-      'class_name' => 'DrupalNode6Migration',
+      'class_name' => 'HrwebNodeMigration',
       'description' => t('Migration of page_file nodes from Drupal 6'),
       'machine_name' => 'PageFile',
       'source_type' => 'page_file',
