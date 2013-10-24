@@ -34,5 +34,34 @@ function migrate_demo_d2d_register_migrations() {
     'source_version' => 6,
   );
 
+  $common_arguments['group_name'] = 'Users and Roles';
+
+  /*** Roles ***/
+  $role_arguments = $common_arguments + array(
+      'machine_name' => 'Role',
+      'description' => t('Import Drupal 6 roles'),
+      'role_mappings' => array(
+        'webmaster' => 'builder',
+        'editor' => 'editor',
+        'avc' => 'avc',
+        'reviewer' => 'reviewer',
+        'web assistant' => 'web assistant',
+
+      ),
+    );
+  Migration::registerMigration('DrupalRole6Migration',
+    $role_arguments['machine_name'], $role_arguments);
+
+  /*** Users ***/
+  $arguments = $common_arguments + array(
+      'description' => t('Migration of users from HRWeb Drupal 6'),
+      'machine_name' => 'User',
+      'role_migration' => 'Role',
+    );
+
+  Migration::registerMigration('DrupalUser6Migration', $arguments['machine_name'],
+    $arguments);
+
+
 }
 
