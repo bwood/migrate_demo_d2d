@@ -1,5 +1,6 @@
 <?php
 
+define('DEFAULT_SRC_FILES', '/Users/bwood/Sites/pantheon/hrweb/sites/default/files');
 
 /**
  * Implements hook_migrate_api().
@@ -16,6 +17,12 @@ function migrate_demo_d2d_migrate_api() {
  */
 function migrate_demo_d2d_flush_caches() {
   migrate_demo_d2d_register_migrations();
+
+  drupal_set_message("Source directory for files: " .
+    variable_get('migrate_demo_d2d_source_files_path', DEFAULT_SRC_FILES) .
+    "\nTo change this use 'drush vset migrate_demo_d2d_source_files_path /path/to/my/source/files'");
+
+  $files_public_path = variable_get('file_public_path', '/sites/default/files');
 }
 
 /**
@@ -121,6 +128,34 @@ function migrate_demo_d2d_register_migrations() {
     Migration::registerMigration($arguments['class_name'], $arguments['machine_name'],
       $arguments);
   }
+
+  /*** Files ***/
+  $common_arguments['group_name'] = "Files";
+
+  //Assumes both sites use same public files path
+
+  $source_site_name = 'hrweb';
+
+  $file_arguments = array(
+    array(
+      'class_name' => 'DrupalFile6Migration',
+      'machine_name' => 'AllFiles',
+      'description' => t('Import Drupal 6 files'),
+      'default_uid' => 1,
+      'source_dir' =>  variable_get('migrate_demo_d2d_source_files_path', DEFAULT_SRC_FILES),
+    ),
+  );
+
+  $common_file_arguments = $common_arguments + array(
+      'user_migration' => 'User',
+    );
+
+  foreach ($file_arguments as $arguments) {
+    $arguments = array_merge_recursive($arguments, $common_file_arguments);
+    Migration::registerMigration($arguments['class_name'], $arguments['machine_name'],
+      $arguments);
+  }
+
 
 }
 
