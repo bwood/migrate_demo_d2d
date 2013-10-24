@@ -1,0 +1,20 @@
+name = "Example D6 to D7 migration"
+description = "Migrate content from D6 site to D7"
+package = "Migration"
+core = 7.x
+version = "7.x-0.1"
+
+dependencies[] = migrate
+dependencies[] = migrate_d2d
+; migrate_extras, though deprecated, is needed. see comments in node.inc
+dependencies[] = migrate_extras
+dependencies[] = book
+dependencies[] = redirect
+
+files[] = node.inc
+files[] = menu.inc
+files[] = redirect.inc
+files[] = ucb_drupal.inc
+
+
+

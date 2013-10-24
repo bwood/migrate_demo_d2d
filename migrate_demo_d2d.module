@@ -1,0 +1,38 @@
+<?php
+
+
+/**
+ * Implements hook_migrate_api().
+ */
+function migrate_demo_d2d_migrate_api() {
+  $api = array(
+    'api' => 2,
+  );
+  return $api;
+}
+
+/**
+ * Implements hook_flush_caches().
+ */
+function migrate_demo_d2d_flush_caches() {
+  migrate_demo_d2d_register_migrations();
+}
+
+/**
+ * Register all D6->D7 migrations.
+ */
+function migrate_demo_d2d_register_migrations() {
+  /**
+   * Each migration being registered takes an array of arguments, some required
+   * and some optional. Start with the common arguments required by all - the
+   * source_connection (connection key, set up in settings.php, pointing to
+   * the Drupal 6 database), source_version (major version of Drupal), and
+   * group_name (a.k.a. import job).
+   */
+  $common_arguments = array(
+    'source_connection' => 'legacy',
+    'source_version' => 6,
+  );
+
+}
+
