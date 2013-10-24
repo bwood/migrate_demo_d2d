@@ -62,6 +62,65 @@ function migrate_demo_d2d_register_migrations() {
   Migration::registerMigration('DrupalUser6Migration', $arguments['machine_name'],
     $arguments);
 
+  /*** Vocabulary ***/
+  // For vocabulary migrations, source_vocabulary and destination_vocabulary are
+  // required arguments. Note that in Drupal 6 vocabularies did not have machine
+  // names, so we use the vocabulary ID to uniquely identify them.
+  $common_arguments['group_name'] = 'Taxonomy';
+
+  $vocabulary_arguments = array(
+    array(
+      'description' => t('Vocabulary: Primary Navigation Section'),
+      'machine_name' => 'primary_navigation_section',
+      'source_vocabulary' => '1', // D6 Vocabulary ID
+      'destination_vocabulary' => 'primary_navigation_section',
+    ),
+    array(
+      'description' => t('Vocabulary: Secondary Navigation Section'),
+      'machine_name' => 'secondary_navigation_section',
+      'source_vocabulary' => '2', // D6 Vocabulary ID
+      'destination_vocabulary' => 'secondary_navigation_section',
+    ),
+    array(
+      'description' => t('Vocabulary: FAQ'),
+      'machine_name' => 'faqs',
+      'source_vocabulary' => '4', // D6 Vocabulary ID
+      'destination_vocabulary' => 'faqs',
+    ),
+    array(
+      'description' => t('Vocabulary: Glossary'),
+      'machine_name' => 'glossary',
+      'source_vocabulary' => '7', // D6 Vocabulary ID
+      'destination_vocabulary' => 'glossary',
+    ),
+    array(
+      'description' => t('Vocabulary: News Item'),
+      'machine_name' => 'news_item',
+      'source_vocabulary' => '8', // D6 Vocabulary ID
+      'destination_vocabulary' => 'news_item',
+    ),
+    array(
+      'description' => t('Vocabulary: Related Links Categories'),
+      'machine_name' => 'related_links_categories',
+      'source_vocabulary' => '5', // D6 Vocabulary ID
+      'destination_vocabulary' => 'related_links_categories',
+    ),
+
+  );
+
+  // Again, we're using the migrate_d2d class directly.
+  // The soft dependency says that while we don't have to run the user migration
+  // first, we want to make sure it's listed first so the vocabularies are
+  // listed right ahead of the node migrations.
+  $common_vocabulary_arguments = $common_arguments + array(
+      'class_name' => 'DrupalTerm6Migration',
+      'soft_dependencies' => array('User'),
+    );
+  foreach ($vocabulary_arguments as $arguments) {
+    $arguments += $common_vocabulary_arguments;
+    Migration::registerMigration($arguments['class_name'], $arguments['machine_name'],
+      $arguments);
+  }
 
 }
 
