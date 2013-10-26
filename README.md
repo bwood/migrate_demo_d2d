@@ -9,18 +9,18 @@ Git Branches for the Presentation
 ---------------------------------
 This repository has the following remote branches:
 
-$ git branch
-  1-users
-  2-taxonomy
-  3-files
-  4-nodes
-  5-nodes
-* master
+    $ git branch
+      1-users
+      2-taxonomy
+      3-files
+      4-nodes
+      5-nodes
+      master
 
 After cloning it down you will be looking at a very boring master
 branch.  Beginning with the Migrate Users slide you can do
 
-git checkout 1-users
+    git checkout 1-users
 
 to update your repository with the code that enables the users
 migration.  The branch 2-taxonomy goes with the slide Migrate
