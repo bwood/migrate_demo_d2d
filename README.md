@@ -5,4 +5,25 @@ This code was derived from the real-life project [migrate_hrweb](https://github.
 
 This is a module for use with [migrate](https://drupal.org/project/migrate) and migrate_d2d.
 
+Git Branches for the Presentation
+---------------------------------
+This repository has the following remote branches:
+
+$ git branch
+  1-users
+  2-taxonomy
+  3-files
+  4-nodes
+  5-nodes
+* master
+
+After cloning it down you will be looking at a very boring master
+branch.  Beginning with the Migrate Users slide you can do
+
+git checkout 1-users
+
+to update your repository with the code that enables the users
+migration.  The branch 2-taxonomy goes with the slide Migrate
+Taxonomy. Etc.
+
 
