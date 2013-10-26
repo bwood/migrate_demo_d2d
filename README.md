@@ -26,4 +26,12 @@ to update your repository with the code that enables the users
 migration.  The branch 2-taxonomy goes with the slide Migrate
 Taxonomy. Etc.
 
+Presentation Materials
+-----------------------
+Presentation Materials
+
+- Slides: https://www.dropbox.com/s/ml9r92rn1pn2fdz/Migrate%20Mojo.pptx
+- Code: https://github.com/bwood/migrate_demo_d2d
+- Demo Site archives: https://berkeley.box.com/s/fyn1esj4dtwl23xpj7oj
+
 
